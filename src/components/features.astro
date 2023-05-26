@@ -1,0 +1,60 @@
+---
+// @ts-ignore
+import { Icon } from "astro-icon";
+
+const features = [
+  {
+    title: "Change the Score Text Color",
+    description:
+      "Choose your color to match your mood or preferences. Whether you prefer a classic black or white, or something more vibrant like red or blue",
+    icon: "bx:bx-palette",
+  },
+  {
+    title: "Customize Score Label",
+    description:
+      "Tailor the text appearing before each score to suit your style. With options ranging from a simple dash '-' to a clear label like 'Score:', the decision to enhance readability or simplify for aesthetics is completely up to you.",
+    icon: "bx:bx-font",
+  },
+  {
+    title: "Change Score Decimal Points",
+    description:
+      "This feature allows you to modify the decimal precision of the anime score. Whether you appreciate the accuracy of two decimal places or prefer the simplicity of a whole number",
+    icon: "bx:bx-calculator",
+  },
+  {
+    title: "Customize Score Layout",
+    description:
+      "Choose where you'd like to see the scores on the anime cards. Our user-friendly interface lets you easily change the layout to your comfort.",
+    icon: "bx:bx-customize",
+  },
+  {
+    title: "Sort Anime Cards by Score",
+    description:
+      "Order your anime cards in ascending or descending order by score, and find your next favorite anime in a breeze.",
+    icon: "bx:bx-sort",
+  },
+];
+---
+
+<div id="features-section" class="mt-16 md:mt-0">
+  <h2 class="text-3xl lg:text-4xl font-bold lg:tracking-tight">Upgrade Your Anime Journey</h2>
+  <p class="text-lg mt-4 text-slate-600">
+    Explore our customizable features that merge scores directly into your Crunchyroll browsing.
+  </p>
+</div>
+
+<div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16">
+  {
+    features.map((item) => (
+      <div class="flex gap-4 items-start">
+        <div class="mt-1 bg-black rounded-full  p-2 w-10 h-10 shrink-0">
+          <Icon class="text-white" name={item.icon} />
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
+          <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+        </div>
+      </div>
+    ))
+  }
+</div>

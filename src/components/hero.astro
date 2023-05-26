@@ -1,0 +1,57 @@
+---
+import { Picture } from "@astrojs/image/components";
+import Link from "@components/ui/link.astro";
+import { Icon } from "astro-icon";
+import animeData from "../data/anime_data.json";
+---
+
+<main class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
+  <div class="py-6 md:order-1 hidden md:block">
+    <div class="flex flex-wrap justify-center">
+      {
+        animeData.slice(0, 2).map((anime) => (
+          <div class="w-full sm:w-1/2 md:w-1/2 xl:w-2/4 p-5">
+            <div class="flex flex-col items-center">
+              <Picture
+                src={`../src/assets/hero/${anime.crunchyroll_id}.jpg`}
+                alt={anime.title}
+                alt="Anime Image"
+                widths={[400, 800, 1200]}
+                aspectRatio="9:16"
+                sizes="(max-width: 600px) 100vw, 200px"
+                loading="eager"
+                format="avif"
+              />
+              <h2 class="mt-2">{anime.title}</h2>
+              <p class="font-bold">Score: {anime.mean}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div>
+    <h1 class="text-5xl lg:text-6xl xl:text-6xl font-bold lg:tracking-tight xl:tracking-tighter">
+      Scores at a Glance
+    </h1>
+    <p class="text-lg mt-4 text-slate-600 max-w-xl">
+      Dive into Crunchyroll with CrunchyScore by your side. No more extra tabs - your anime ratings are now a blink
+      away!
+    </p>
+    <div class="mt-6 flex flex-col sm:flex-row gap-3">
+      <Link
+        href="https://chrome.google.com/"
+        target="_blank"
+        class="flex gap-1 items-center justify-center"
+        rel="noopener"
+      >
+        <Icon class="w-5 h-5" name="logos:chrome" />
+        Download Extension
+      </Link>
+
+      <Link size="lg" style="outline" href="#features-section" class="flex gap-1 items-center justify-center">
+        Learn more
+      </Link>
+    </div>
+  </div>
+</main>
