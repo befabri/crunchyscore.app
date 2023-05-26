@@ -3,6 +3,22 @@ import { Picture } from "@astrojs/image/components";
 import Link from "@components/ui/link.astro";
 import { Icon } from "astro-icon";
 import animeData from "../data/anime_data.json";
+const images = await Astro.glob("../assets/hero/*").then((files) => {
+  return files.map((file) => file.default);
+});
+const imagesObj = images.reduce((imageCollection, image) => {
+  const parts = image.src.split('/');
+  const fileNameWithExtension = parts[parts.length - 1];
+  const fileNameWithoutExtension = fileNameWithExtension.split('.')[0];
+  
+  imageCollection[fileNameWithoutExtension] = {
+    ...image,
+    crunchyroll_id: fileNameWithoutExtension
+  };
+  
+  return imageCollection;
+}, {});
+console.log(imagesObj);
 ---
 
 <main class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
@@ -13,7 +29,7 @@ import animeData from "../data/anime_data.json";
           <div class="w-full sm:w-1/2 md:w-1/2 xl:w-2/4 p-5">
             <div class="flex flex-col items-center">
               <Picture
-                src={`../src/assets/hero/${anime.crunchyroll_id}.jpg`}
+              src={imagesObj[anime.crunchyroll_id].src}
                 alt={anime.title}
                 alt="Anime Image"
                 widths={[400, 800, 1200]}

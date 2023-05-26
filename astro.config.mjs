@@ -5,6 +5,8 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://crunchyscore.app",
+  outDir: "dist",
+  publicDir: "public",
   integrations: [
     tailwind(),
     image({
