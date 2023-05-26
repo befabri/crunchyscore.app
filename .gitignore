@@ -1,5 +1,6 @@
 # build output
 dist/
+public/
 .output/
 .astro
 
@@ -20,8 +21,7 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-src/assets/*
+src/assets/tmp
 
-src/data/*
 .gitignore
 .vscode

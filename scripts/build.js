@@ -4,6 +4,7 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 import dotenv from "dotenv";
+import crypto from "crypto";
 
 dotenv.config();
 const API_KEY = process.env.API_KEY;
@@ -30,6 +31,10 @@ function moveFiles(sourceDir, destDir) {
   });
 }
 
+function getHashedId(id) {
+  return crypto.createHash("md5").update(id).digest("hex");
+}
+
 async function downloadImage() {
   try {
     if (retryCount >= maxRetries) {
@@ -38,7 +43,6 @@ async function downloadImage() {
     }
 
     const url = `${BASE_URL}/${numberObjects}`;
-    console.log(url);
     const response = await axios({
       url,
       method: "GET",
@@ -57,7 +61,7 @@ async function downloadImage() {
           responseType: "stream",
         });
 
-        const outputPath = path.resolve(__dirname, "../src/assets/tmp", `${anime.crunchyroll_id}.jpg`);
+        const outputPath = path.resolve(__dirname, "../src/assets/tmp", `${getHashedId(anime.title)}.jpg`);
         const writer = fs.createWriteStream(outputPath);
 
         imgResponse.data.pipe(writer);
@@ -72,7 +76,7 @@ async function downloadImage() {
         if (metadata.height > metadata.width) {
           console.log(`Downloaded image from ${picture.large}`);
           isImageDownloaded = true;
-          resultData.push({ title: anime.title, mean: anime.mean, crunchyroll_id: anime.crunchyroll_id });
+          resultData.push({ title: anime.title, mean: anime.mean, id: getHashedId(anime.title) });
           break;
         } else {
           fs.unlinkSync(outputPath);
