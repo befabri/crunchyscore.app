@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://crunchyscore.app/sitemap-index.xml
+Sitemap: https://crunchyscore.app/sitemap-0.xml
