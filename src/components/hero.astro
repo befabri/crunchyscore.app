@@ -30,12 +30,10 @@ const imagesObj = images.reduce((imageCollection, image) => {
               <Picture
                 src={imagesObj[anime.id].src}
                 alt={anime.title}
-                alt="Anime Image"
                 widths={[400, 800, 1200]}
                 aspectRatio="9:16"
                 sizes="(max-width: 600px) 100vw, 200px"
                 loading="eager"
-                format="avif"
               />
               <h2 class="mt-2">{anime.title}</h2>
               <p class="font-bold">Score: {anime.mean}</p>
