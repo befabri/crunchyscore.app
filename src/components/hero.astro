@@ -1,70 +1,54 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import Link from "@components/ui/link.astro";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 import animeData from "../data/anime_data.json";
-const images = await Astro.glob("../assets/hero/*").then((files) => {
-  return files.map((file) => file.default);
-});
-const imagesObj = images.reduce((imageCollection, image) => {
-  const parts = image.src.split("/");
-  const fileNameWithExtension = parts[parts.length - 1];
-  const fileNameWithoutExtension = fileNameWithExtension.split(".")[0];
 
-  imageCollection[fileNameWithoutExtension] = {
-    ...image,
-    id: fileNameWithoutExtension,
-  };
-
-  return imageCollection;
-}, {});
+const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/hero/*.{jpeg,jpg,png,gif}");
 ---
 
-<main class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-5 lg:pb-24 px-5 md:px-0">
-  <div class="py-6 md:order-1 hidden md:block pt-12 lg:pt-6">
-    <div class="flex flex-wrap justify-center">
-      {
-        animeData.slice(0, 2).map((anime) => (
-          <div class="w-full sm:w-1/2 md:w-1/2 xl:w-2/4 p-5">
-            <div class="flex flex-col items-center">
-              <Picture
-                src={imagesObj[anime.id].src}
-                alt={anime.title}
-                widths={[200, 400, 600]}
-                aspectRatio="9:16"
-                sizes="(max-width: 600px) 100vw, 200px"
-                loading="eager"
-              />
-              <h2 class="mt-2">{anime.title}</h2>
-              <p class="font-bold">Score: {anime.mean}</p>
-            </div>
-          </div>
-        ))
-      }
-    </div>
-  </div>
-  <div>
-    <h1 class="text-5xl lg:text-6xl xl:text-6xl font-bold lg:tracking-tight xl:tracking-tighter">
-      <span class="text-custom_blue">Scores</span> at a Glance
-    </h1>
-    <p class="text-lg mt-4 text-slate-600 max-w-xl">
-      Dive into <span class="font-bold">Crunchyroll</span> with CrunchyScore by your side. No more extra tabs - MyAnimeList
-      anime ratings are now a blink away!
-    </p>
-    <div class="mt-6 flex flex-col sm:flex-row gap-3">
-      <Link
-        href="https://chrome.google.com/webstore/detail/crunchyscore/coiidbjimmeojgdkclafjccnhgenmmbi/"
-        target="_blank"
-        class="flex gap-1 items-center justify-center"
-        rel="noopener"
-      >
-        <Icon class="w-5 h-5" name="logos:chrome" />
-        Download Extension
-      </Link>
+<main
+    class="flex flex-col lg:flex-row items-center justify-between px-4 md:px-0 py-10 sm:py-14 gap-14 lg:gap-2">
+    <div>
+        <h1 class="text-5xl xl:text-6xl font-bold lg:tracking-tight xl:tracking-tighter">
+            <span class="text-custom_blue">Scores</span> at a Glance
+        </h1>
+        <p class="text-lg mt-4 text-slate-600 max-w-xl">
+            Dive into <span class="font-bold">Crunchyroll</span> with CrunchyScore by your side. No more extra
+            tabs - MyAnimeList anime ratings are now a blink away!
+        </p>
+        <div class="mt-6 flex flex-col lg:flex-row gap-3">
+            <Link
+                href="https://chrome.google.com/webstore/detail/crunchyscore/coiidbjimmeojgdkclafjccnhgenmmbi/"
+                target="_blank"
+                class="flex gap-1 items-center justify-center"
+                rel="noopener">
+                <Icon class="w-5 h-5" name="chrome" />
+                Download Extension
+            </Link>
 
-      <Link size="lg" style="outline" href="#features-section" class="flex gap-1 items-center justify-center">
-        Learn more
-      </Link>
+            <Link
+                size="lg"
+                style="outline"
+                href="#features-section"
+                class="flex gap-1 items-center justify-center">
+                Learn more
+            </Link>
+        </div>
     </div>
-  </div>
+    <div class="hidden md:block">
+        <div class="flex flex-row justify-center gap-10">
+            {
+                animeData.slice(0, 2).map((anime) => (
+                    <div class="w-full sm:w-1/2 md:w-1/2 xl:w-2/4">
+                        <div class="flex flex-col items-center">
+                            <Image src={images[anime.src]()} alt={anime.title} width="250" loading="eager" />
+                            <h2 class="mt-2">{anime.title}</h2>
+                            <p class="font-bold">Score: {anime.mean}</p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
 </main>

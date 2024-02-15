@@ -2,11 +2,13 @@
   {
     "title": "Spy x Family",
     "mean": 8.63,
-    "id": "60fbccba7da56bc2ca69728294cb7e6c"
+    "id": "60fbccba7da56bc2ca69728294cb7e6c",
+    "src": "/src/assets/hero/60fbccba7da56bc2ca69728294cb7e6c.jpg"
   },
   {
     "title": "Lycoris Recoil",
     "mean": 8.21,
-    "id": "394a14278b2f3485ce3a180c521cb2f6"
+    "id": "394a14278b2f3485ce3a180c521cb2f6",
+    "src": "/src/assets/hero/394a14278b2f3485ce3a180c521cb2f6.jpg"
   }
 ]
