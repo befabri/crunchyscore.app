@@ -1,16 +1,13 @@
 ---
-import Container from "@components/container.astro";
+
 ---
 
-<Container>
-    <header class="flex flex-col lg:flex-row justify-between items-center my-5 px-5 md:px-0">
-        <div class="flex w-full lg:w-auto items-center justify-between">
-            <!-- <div><span class="font-bold text-custom_orange">Crunchy</span><span class="font-bold text-custom_blue">score.app</span></div> -->
-            <a href="/">
-                <span class="font-bold text-lg text-slate-800">Crunchy</span><span
-                    class="font-bold text-lg text-custom_orange">Score</span
-                >
-            </a>
-        </div>
-    </header>
-</Container>
+<header class="max-w-screen-xl mx-auto px-0 md:px-5 flex flex-col gap-24">
+    <div class="flex w-full lg:w-auto items-center justify-between my-5 px-5 md:px-0">
+        <a href="/">
+            <span class="font-bold text-3xl sm:text-2xl text-slate-800">Crunchy</span><span
+                class="font-bold text-3xl sm:text-2xl text-custom_orange">Score</span
+            >
+        </a>
+    </div>
+</header>

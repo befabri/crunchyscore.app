@@ -35,23 +35,23 @@ const features = [
 ];
 ---
 
-<div id="features-section" class="mt-16 md:mt-0 px-5 md:px-0">
-    <div>
+<div id="features-section" class="px-5 md:px-0 flex flex-col gap-12">
+    <div class="flex flex-col gap-4">
         <h2 class="text-3xl lg:text-4xl font-bold lg:tracking-tight">Upgrade Your Anime Journey</h2>
-        <p class="text-lg mt-4 text-slate-600">
+        <p class="text-lg text-slate-600">
             Explore our customizable features that merge scores directly into your Crunchyroll browsing.
         </p>
     </div>
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-6 sm:gap-16">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-16">
         {
             features.map((item) => (
                 <div class="flex gap-4 items-start">
                     <div class="mt-1 bg-custom_blue rounded-full p-2 w-10 h-10 shrink-0 flex items-center justify-center">
                         <Icon name={item.icon} class="text-white w-5 h-5" />
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
-                        <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+                    <div class="flex flex-col gap-4">
+                        <h3 class="font-semibold text-lg">{item.title}</h3>
+                        <p class="text-slate-500 leading-relaxed">{item.description}</p>
                     </div>
                 </div>
             ))

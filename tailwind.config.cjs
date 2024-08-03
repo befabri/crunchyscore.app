@@ -13,6 +13,9 @@ module.exports = {
             fontFamily: {
                 sans: ["InterVariable", "Inter", ...defaultTheme.fontFamily.sans],
             },
+            screens: {
+                'xs': '475px',  // Example breakpoint for 'xs'
+              }
         },
     },
     plugins: [require("@tailwindcss/typography")],

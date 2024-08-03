@@ -7,48 +7,54 @@ import animeData from "../data/anime_data.json";
 const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/hero/*.{jpeg,jpg,png,gif}");
 ---
 
-<main
-    class="flex flex-col lg:flex-row items-center justify-between px-4 md:px-0 py-10 sm:py-14 gap-14 lg:gap-2 lg:mt-14">
-    <div>
-        <h1 class="text-5xl xl:text-6xl font-bold lg:tracking-tight xl:tracking-tighter">
+<div class="flex flex-col lg:flex-row justify-between px-4 md:px-0 py-10 sm:py-14 gap-14 lg:gap-4 lg:mt-14">
+    <div class="flex flex-col gap-8 sm:gap-4 px-0 sm:px-8 lg:px-0 sm:justify-center">
+        <h1 class="text-5xl sm:text-6xl font-bold lg:tracking-tight xl:tracking-tighter">
             <span class="text-custom_blue">Scores</span> at a Glance
         </h1>
-        <p class="text-lg mt-4 text-slate-600 max-w-xl">
-            Dive into <span class="font-bold">Crunchyroll</span> with CrunchyScore by your side. No more extra
-            tabs - MyAnimeList anime ratings are now a blink away!
+        <p class="text-lg text-slate-600 max-w-xl flex flex-col">
+            <span>Dive into <span class="font-bold">Crunchyroll</span> with CrunchyScore by your side.</span>
+            <span>No more extra tabs - MyAnimeList anime ratings are now a blink away!</span>
         </p>
-        <div class="mt-6 flex flex-col lg:flex-row gap-3">
+        <div class="flex flex-col sm:flex-row gap-3 sm:items-start">
             <Link
                 href="https://chrome.google.com/webstore/detail/crunchyscore/coiidbjimmeojgdkclafjccnhgenmmbi/"
                 target="_blank"
-                class="flex gap-1 items-center justify-center"
+                class="flex gap-2 items-center justify-center"
                 rel="noopener">
                 <Icon class="w-5 h-5" name="chrome" />
                 Download Extension
             </Link>
-
             <Link
                 size="lg"
                 style="outline"
                 href="#features-section"
-                class="flex gap-1 items-center justify-center">
+                class="flex gap-2 items-center justify-center">
                 Learn more
             </Link>
         </div>
+        <span class="pl-2"
+            >Also available on <a
+                href="https://addons.mozilla.org/firefox/addon/crunchyscore/"
+                target="_blank"
+                rel="noopener"
+                class="font-medium">Firefox</a
+            ></span
+        >
     </div>
-    <div class="hidden md:block">
-        <div class="flex flex-row justify-center gap-10">
+    <div class="hidden sm:block">
+        <div class="flex flex-row justify-center gap-24 lg:gap-12">
             {
                 animeData.slice(0, 2).map((anime) => (
-                    <div class="w-full sm:w-1/2 md:w-1/2 xl:w-2/4">
-                        <div class="flex flex-col items-center">
+                    <div class="flex flex-col items-center">
+                        <div class="w-full">
                             <Image src={images[anime.src]()} alt={anime.title} width="250" loading="eager" />
-                            <h2 class="mt-2">{anime.title}</h2>
-                            <p class="font-bold">Score: {anime.mean}</p>
                         </div>
+                        <h2 class="mt-2">{anime.title}</h2>
+                        <p class="font-bold">Score: {anime.mean}</p>
                     </div>
                 ))
             }
         </div>
     </div>
-</main>
+</div>
