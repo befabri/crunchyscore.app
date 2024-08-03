@@ -12,13 +12,24 @@ import { Icon } from "astro-icon/components";
         Get set for a seamless Crunchyroll experience. <br />Click the button below to download the extension
         and have anime ratings at your fingertips.
     </p>
-    <Link
-        href="https://chrome.google.com/webstore/detail/crunchyscore/coiidbjimmeojgdkclafjccnhgenmmbi/"
-        target="_blank"
-        class="flex gap-2 items-center justify-center"
-        rel="noopener"
-        style="inverted">
-        <Icon name="chrome" class="w-5 h-5" />
-        Add to Chrome
-    </Link>
+    <div class="flex flex-row gap-4">
+        <Link
+            href="https://chrome.google.com/webstore/detail/crunchyscore/coiidbjimmeojgdkclafjccnhgenmmbi/"
+            target="_blank"
+            class="flex gap-2 items-center justify-center"
+            rel="noopener"
+            style="inverted">
+            <Icon name="chrome" class="w-6 h-6" />
+            Add to Chrome
+        </Link>
+        <Link
+            href="https://addons.mozilla.org/firefox/addon/crunchyscore/"
+            target="_blank"
+            class="flex gap-2 items-center justify-center bg-gray-300"
+            rel="noopener"
+            style="inverted">
+            <Icon name="firefox" class="w-6 h-6" />
+            Add to Firefox
+        </Link>
+    </div>
 </div>
